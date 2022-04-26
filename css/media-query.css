@@ -1,9 +1,16 @@
 @media screen and (max-width: 1200px){
-    aside{
-        background-color: red;
-    }
     .outer-container{
         padding: 20px 100px;
+    }
+    /* aside */
+    aside > #search-nav > i{
+        left: 25px;
+    }
+    #aside-search{
+        padding-left: 60px;
+    }
+    #aside-search::placeholder{
+        left: 60px;
     }
     /* main */
     .chat-text .row {
@@ -12,22 +19,34 @@
 }
 
 @media screen and (max-width: 1000px){
-    aside{
-        background-color: blue;
-    }
     .outer-container{
         padding: 20px 40px;
     }
+    /* aside */
     #notifiche{
         font-size: 0.8em;
         padding: 10px;
+    }
+    aside > #search-nav > i{
+        left: 15px;
+    }
+    #aside-search{
+        padding-left: 40px;
+    }
+    #aside-search::placeholder{
+        left: 40px;
     }
 }
 
 
 @media screen and (max-width: 750px) {
-    aside{
-        background-color: green;
+    .outer-container{
+        padding: 16px 16px;
+    }
+    /* aside */
+    aside > header .header-icons{
+        gap: 4px;
+        margin-right: 0;
     }
     #chats .li-dx{
         display: none;
@@ -45,8 +64,25 @@
 
 
 @media screen and (max-width: 650px) {
+    /* aside */
+    aside .myImg img{
+        height: 30px;
+    }
+    aside > header .header-icons{
+        font-size: 0.8em;
+    }
     #chats li p{
         display: none;
+    }
+    aside > #search-nav > i{
+        left: 5px;
+    }
+    #aside-search{
+        font-size: 0.7em;
+        padding-left: 20px;
+    }
+    #aside-search::placeholder{
+        left: 20px;
     }
 }
 
@@ -54,10 +90,6 @@
     /* aside */
     aside{
         display: none;
-        background-color: pink;
-    }
-    .outer-container{
-        padding: 16px 16px;
     }
     #notifiche{
         display: none;
