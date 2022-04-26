@@ -10,9 +10,10 @@
     padding: 20px 150px;
 }
 #app{
+    display: flex;
     height: 100%;
     width:100%;
-    background-color: #EAEAEA;
+    background-color: white;   
 }
 
 
@@ -25,7 +26,7 @@ aside{
 
 /* aside - header */
 aside > header{
-    background-color: red;
+    background-color: #EAEAEA;
 }
 /* aside - notifiche */
 #notifiche{
@@ -41,6 +42,9 @@ aside > #search-nav{
 aside > #chats > ul{
     list-style: none;
 }
+#chats li:first-of-type{
+    background-color: #E9EBEB;
+}
 .user-icon{
     height: 50px;
     border-radius: 50%;
@@ -48,3 +52,21 @@ aside > #chats > ul{
 
 
 /* MAIN */
+main{
+    display: flex;
+    flex-flow: column nowrap;
+    flex-grow: 1;
+}
+/* main - header */
+main > header{
+    background-color: #EAEAEA;
+}
+main > section.chat-text{
+    flex-grow: 1;
+    background-image: url(../img/mine.jpg);
+}
+/* main - footer */
+main > footer{
+    height: 50px;
+    background-color: #EAEAEA;
+}
