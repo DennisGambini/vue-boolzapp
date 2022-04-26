@@ -11,10 +11,45 @@
     <title>BoolzApp</title>
 </head>
 <body>
-    
-    <div id="app">
+    <div class="outer-container">
 
+        <div id="app">
 
+            <!-- ASIDE (PARTE A SX) -->
+            <aside>
+                <!-- sx header -->
+                <header>
+                    <div class="myImg">
+                        <img src="img/avatar_io.jpg" alt="icona utente" class="user-icon">
+                        <span>Sofia</span>
+                    </div>
+                </header>
+
+                <!-- sx notifiche -->
+                <section id="notifiche">
+                    sezione notifiche
+                </section>
+
+                <!-- sx search navbar -->
+                <nav id="search-nav">
+                    search
+                </nav>
+
+                <!-- sx chats -->
+                <section id="chats">
+                    <ul>
+                        <li v-for="(chat,index) in chats">
+                            <img :src="chats[index].immagineUtente" :alt="chats[index].nomeUtente" class="user-icon">
+                            <span>{{chats[index].nomeUtente}}</span>
+                        </li>
+                    </ul>
+                </section>
+
+            </aside>
+
+            <!-- MAIN (PARTE A DX) -->
+            <main></main>
+        </div>
     </div>
 
     <script src="js/script.js"></script>

@@ -1,0 +1,50 @@
+/* GENERALI */
+*{
+    margin: 0;
+    padding: 0;box-sizing: border-box;
+}
+.outer-container{
+    background-image: linear-gradient(#009688 120px, #D8DBD6 120px);
+    height: 100vh;
+    width: 100vw;
+    padding: 20px 150px;
+}
+#app{
+    height: 100%;
+    width:100%;
+    background-color: #EAEAEA;
+}
+
+
+/* ASIDE */
+
+aside{
+    width: 35%;
+    border-right: 1px solid lightgray;
+}
+
+/* aside - header */
+aside > header{
+    background-color: red;
+}
+/* aside - notifiche */
+#notifiche{
+    height: 30px;
+    width: 100%;
+    background-color: #8EDAFC;
+}
+/* aside - search */
+aside > #search-nav{
+    background-color: yellowgreen;
+}
+/* aside - ul */
+aside > #chats > ul{
+    list-style: none;
+}
+.user-icon{
+    height: 50px;
+    border-radius: 50%;
+}
+
+
+/* MAIN */
