@@ -1,7 +1,10 @@
 /* GENERALI */
 *{
     margin: 0;
-    padding: 0;box-sizing: border-box;
+    padding: 0;
+    box-sizing: border-box;
+    /* font-family: 'Libre Bodoni', serif; */
+    font-family: 'Roboto', sans-serif;
 }
 .outer-container{
     background-image: linear-gradient(#009688 120px, #D8DBD6 120px);
@@ -17,6 +20,22 @@
 }
 i{
     color: #B1B1B1;
+    padding: 5px;
+    border-radius: 5px;
+}
+.user-icon{
+    height: 50px;
+    border-radius: 50%;
+}
+.header-icons{
+    font-size: 1.1rem;
+    display: flex;
+    gap: 8.5px;
+    margin-right: 20px;
+    cursor: pointer;
+}
+.header-icons i:hover{
+    background-color: #FDFDFD;
 }
 
 /* ASIDE */
@@ -29,12 +48,44 @@ aside{
 /* aside - header */
 aside > header{
     background-color: #EAEAEA;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+}
+aside header .myImg{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.8em;
+    font-weight: 500;
+}
+.myImg img{
+    height: 40px;
 }
 /* aside - notifiche */
 #notifiche{
-    height: 30px;
+    display: flex;
+    gap: 10px;
     width: 100%;
     background-color: #8EDAFC;
+    padding: 15px;
+}
+#notifiche i{
+    background-color: white;
+    border-radius: 50%;
+    color: #8EDAFC;
+    padding: 10px;
+}
+.notifiche-text{
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    font-size: 0.9em;
+}
+.notifiche-text a{
+    color: gray;
+    font-size: 0.8em;
 }
 
 /* aside - search */
@@ -74,14 +125,35 @@ aside > #search-nav > i{
 /* aside - ul */
 aside > #chats > ul{
     list-style: none;
+    overflow-y: auto;
+}
+#chats li{
+    border-top: 1px solid #F0F0F0;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 15px;
+}
+#chats .li-sx{
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
 }
 #chats li:first-of-type{
     background-color: #E9EBEB;
 }
-.user-icon{
-    height: 50px;
-    border-radius: 50%;
+aside ul .user-icon{
+    align-self: center;
 }
+.aside-chat-text > h4{
+    font-weight: 500;
+}
+.aside-chat-text > p, .li-dx{
+    color: rgb(140, 138, 138);
+    font-size: 0.7rem;
+    font-weight: 400;
+}
+
 
 
 /* MAIN */
@@ -93,7 +165,23 @@ main{
 /* main - header */
 main > header{
     background-color: #EAEAEA;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
 }
+main > header .chatImg{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.8em;
+    font-weight: 500;
+}
+.chatImg img{
+    height: 40px;
+}
+
+/* CHAT TEXT */
 main > section.chat-text{
     flex-grow: 1;
     background-image: url(../img/mine.jpg);

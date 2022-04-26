@@ -8,6 +8,14 @@
     <link rel="stylesheet" href="css/style.css">
     <!-- FontAwesome -->
     <script src="https://kit.fontawesome.com/e6654805a9.js" crossorigin="anonymous"></script>
+    <!-- Google Fonts -->
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Bodoni:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet"> -->
+    <!-- roboto -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
     <!-- Vue -->
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <title>BoolzApp</title>
@@ -25,11 +33,20 @@
                         <img src="img/avatar_io.jpg" alt="icona utente" class="user-icon">
                         <span>Sofia</span>
                     </div>
+                    <div class="header-icons">
+                        <i class="fa-solid fa-circle-notch"></i>
+                        <i class="fa-solid fa-message"></i>
+                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                    </div>
                 </header>
 
                 <!-- sx notifiche -->
                 <section id="notifiche">
-                    sezione notifiche
+                    <i class="fa-solid fa-bell-slash"></i>
+                    <div class="notifiche-text">
+                        <h4>Ricevi notifiche di nuovi messaggi</h4>
+                        <a href="#">Attiva notifiche desktop</a>
+                    </div>
                 </section>
 
                 <!-- sx search navbar -->
@@ -42,8 +59,18 @@
                 <section id="chats">
                     <ul>
                         <li v-for="(chat,index) in chats">
-                            <img :src="chats[index].immagineUtente" :alt="chats[index].nomeUtente" class="user-icon">
-                            <span>{{chats[index].nomeUtente}}</span>
+
+                            <div class="li-sx">
+                                <img :src="chats[index].immagineUtente" :alt="chats[index].nomeUtente" class="user-icon">
+                                <div class="aside-chat-text">
+                                    <h4>{{chats[index].nomeUtente}}</h4>
+                                    <p>Ultimo messaggio inviato</p>
+                                </div>
+                            </div>
+
+                            <div class="li-dx">
+                                12.00
+                            </div>
                         </li>
                     </ul>
                 </section>
@@ -56,7 +83,16 @@
                 <header>
                     <div class="chatImg">
                         <img src="img/avatar_1.jpg" alt="icona utente" class="user-icon">
-                        <span>Michele</span>
+                        <div class="aside-chat-text">
+                            <h4>Michele</h4>
+                            <p>Ultimo accesso oggi alle 12.00</p>
+                        </div>
+                    </div>
+
+                    <div class="header-icons">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <i class="fa-solid fa-paperclip"></i>
+                        <i class="fa-solid fa-ellipsis-vertical"></i>
                     </div>
                 </header>
 
