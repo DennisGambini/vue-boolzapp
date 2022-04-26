@@ -1,0 +1,84 @@
+@media screen and (max-width: 1200px){
+    aside{
+        background-color: red;
+    }
+    .outer-container{
+        padding: 20px 100px;
+    }
+    /* main */
+    .chat-text .row {
+        padding: 5px 40px;
+    }
+}
+
+@media screen and (max-width: 1000px){
+    aside{
+        background-color: blue;
+    }
+    .outer-container{
+        padding: 20px 40px;
+    }
+    #notifiche{
+        font-size: 0.8em;
+        padding: 10px;
+    }
+}
+
+
+@media screen and (max-width: 750px) {
+    aside{
+        background-color: green;
+    }
+    #chats .li-dx{
+        display: none;
+    }
+    #notifiche{
+        display: none;
+    }
+    #chats li{
+        font-size: 0.8em;
+    }
+    #chats .li-sx img{
+        height: 40px;
+    }
+}
+
+
+@media screen and (max-width: 650px) {
+    #chats li p{
+        display: none;
+    }
+}
+
+@media screen and (max-width: 570px) {
+    /* aside */
+    aside{
+        display: none;
+        background-color: pink;
+    }
+    .outer-container{
+        padding: 16px 16px;
+    }
+    #notifiche{
+        display: none;
+    }
+    #chats .li-sx{
+        gap: 5px;
+    }
+    
+    /* main */
+    main header, #app{
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+    main footer, #app{
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+    }
+    .chatImg .fa-circle-arrow-left{
+        display: block;
+    }
+    .chat-text .row {
+        padding: 5px 20px;
+    }
+}

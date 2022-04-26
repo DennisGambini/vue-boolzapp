@@ -1,9 +1,8 @@
-/* GENERALI */
+                /* GENERALI */
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    /* font-family: 'Libre Bodoni', serif; */
     font-family: 'Roboto', sans-serif;
 }
 .outer-container{
@@ -28,7 +27,7 @@ i{
     border-radius: 50%;
 }
 .header-icons{
-    font-size: 1.1rem;
+    font-size: 1.1em;
     display: flex;
     gap: 8.5px;
     margin-right: 20px;
@@ -38,14 +37,16 @@ i{
     background-color: #FDFDFD;
 }
 
-/* ASIDE */
+
+                /* ASIDE */
 
 aside{
     width: 35%;
     border-right: 1px solid lightgray;
+    overflow-y: auto;
 }
 
-/* aside - header */
+/* aside - HEADER */
 aside > header{
     background-color: #EAEAEA;
     display: flex;
@@ -63,7 +64,7 @@ aside header .myImg{
 .myImg img{
     height: 40px;
 }
-/* aside - notifiche */
+/* aside - NOTIFICHE */
 #notifiche{
     display: flex;
     gap: 10px;
@@ -88,7 +89,7 @@ aside header .myImg{
     font-size: 0.8em;
 }
 
-/* aside - search */
+/* aside - SEARCH */
 #search-nav{
     position: relative;
     background-color: #f2f2f2;
@@ -122,24 +123,29 @@ aside > #search-nav > i{
     transform: translate(-50%, -50%);
 }
 
-/* aside - ul */
+/* aside - UL */
+/* aside > #chats {
+    overflow-y: hidden;
+} */
 aside > #chats > ul{
     list-style: none;
-    overflow-y: auto;
 }
 #chats li{
     border-top: 1px solid #F0F0F0;
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    padding: 15px;
+    padding: 10px;
 }
 #chats .li-sx{
     display: flex;
     align-items: flex-start;
     gap: 20px;
 }
-#chats li:first-of-type{
+#chats li.active{
+    background-color: #E9EBEB;
+}
+#chats li:hover{
     background-color: #E9EBEB;
 }
 aside ul .user-icon{
@@ -150,19 +156,20 @@ aside ul .user-icon{
 }
 .aside-chat-text > p, .li-dx{
     color: rgb(140, 138, 138);
-    font-size: 0.7rem;
+    font-size: 0.7em;
     font-weight: 400;
 }
 
 
 
-/* MAIN */
+                /* MAIN */
 main{
     display: flex;
     flex-flow: column nowrap;
     flex-grow: 1;
 }
-/* main - header */
+
+/* main - HEADER */
 main > header{
     background-color: #EAEAEA;
     display: flex;
@@ -180,14 +187,67 @@ main > header .chatImg{
 .chatImg img{
     height: 40px;
 }
+.chatImg .fa-circle-arrow-left{
+    display: none;
+    font-size: 1.8em;
+    margin-right: 10px;
+    cursor: pointer;
+}
+.chatImg .fa-circle-arrow-left:hover{
+    background-color: white;
+}
 
-/* CHAT TEXT */
+/* main - CHAT TEXT */
 main > section.chat-text{
     flex-grow: 1;
     background-image: url(../img/mine.jpg);
+    display: flex;
+    flex-flow: column nowrap;
+    padding-top: 40px;
 }
-/* main - footer */
+.chat-text .row{
+    width: 100%;
+    padding: 5px 100px;
+}
+.text{
+    
+    max-width: 300px;
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 0.8em;overflow-wrap: break-word;
+}
+.green{
+    background-color: #D5F9BA;
+    float: right;
+}
+.white{
+    background-color: white;
+    float: left;
+}
+
+/* main - FOOTER */
 main > footer{
     height: 50px;
     background-color: #F3EEEA;
+    display: flex;
+    align-items: center;
+    padding: 5px 20px;
+    gap: 20px;
+}
+main > footer > input[type="text"]{
+    flex-grow: 1;
+    height: 40px;
+    border-radius: 5px;
+    border: none;
+    padding-left: 25px;
+}
+main > footer i{
+    font-size: 1.2em;
+    color: #6B7376;
+    cursor: pointer;
+    padding: 5px;
+}
+main > footer i:hover{
+    color: blue;
+    background-color: white;
 }
