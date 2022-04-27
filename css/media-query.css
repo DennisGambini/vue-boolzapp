@@ -54,6 +54,9 @@
     #notifiche{
         display: none;
     }
+    #chats{
+        height: calc(100% - 100px);
+    }
     #chats li{
         font-size: 0.8em;
     }

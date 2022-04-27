@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- icona favicon -->
+    <link rel="icon" type="image/x-icon" href="img/favicon.ico">
     <!-- css -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/media-query.css">
@@ -55,18 +57,18 @@
                 <!-- sx chats -->
                 <section id="chats">
                     <ul>
-                        <li v-for="(chat,index) in chats">
+                        <li v-for="(chat,index) in chats" :id="chats[index].avatar" :key="chats[index].avatar" @click="getActiveIndex(chats[index].avatar - 1)">
 
                             <div class="li-sx">
-                                <img :src="chats[index].immagineUtente" :alt="chats[index].nomeUtente" class="user-icon">
+                                <img :src=" 'img/avatar_' + chats[index].avatar + '.jpg' " :alt="chats[index].name" class="user-icon">
                                 <div class="aside-chat-text">
-                                    <h4>{{chats[index].nomeUtente}}</h4>
-                                    <p>Ultimo messaggio inviato</p>
+                                    <h4>{{chats[index].name}}</h4>
+                                    <p>{{viewLastMessage(index)}}</p>
                                 </div>
                             </div>
 
                             <div class="li-dx">
-                                12.00
+                                {{viewLastDate(index)}}
                             </div>
                         </li>
                     </ul>
@@ -79,12 +81,11 @@
                 <!-- INTESTAZIONE CHAT -->
                 <header>
                     <div class="chatImg">
-                        <!-- <i class="fa-solid fa-bars"></i> -->
                         <i class="fa-solid fa-circle-arrow-left"></i>
-                        <img src="img/avatar_1.jpg" alt="icona utente" class="user-icon">
+                        <img :src="'img/avatar_' + chats[activeIndex].avatar + '.jpg' " alt="icona utente" class="user-icon">
                         <div class="aside-chat-text">
-                            <h4>Michele</h4>
-                            <p>Ultimo accesso oggi alle 12.00</p>
+                            <h4>{{chats[activeIndex].name}}</h4>
+                            <p>Ultimo accesso oggi alle {{modifyDate(getLastReceived())}}</p>
                         </div>
                     </div>
 
@@ -97,17 +98,8 @@
 
                 <!-- CHAT -->
                 <section class="chat-text">
-                    <div class="row">
-                        <div class="text green">Sciaoooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo</div>
-                    </div>
-                    <div class="row">
-                        <div class="text white">Belo</div>
-                    </div>
-                    <div class="row">
-                        <div class="text green">Sciao</div>
-                    </div>
-                    <div class="row">
-                        <div class="text green">Sciao</div>
+                    <div v-for="(message, index) in chats[activeIndex].messages" class="row">
+                        <div class="text" :class="chats[activeIndex].messages[index].status === 'received' ? 'white' : 'green' ">{{chats[activeIndex].messages[index].message}}</div>
                     </div>
 
                 </section>
@@ -118,7 +110,7 @@
                         <i class="fa-regular fa-face-smile"></i>
                     </div>
 
-                    <input type="text" name="write-message" id="write-message" placeholder="Scrivi un messaggio">
+                    <input type="text" name="write-message" id="write-message" placeholder="Scrivi un messaggio" v-model="newMessage" @keyup.enter="pushMessage">
 
                     <div class="icon-dx">
                         <i class="fa-solid fa-microphone"></i>

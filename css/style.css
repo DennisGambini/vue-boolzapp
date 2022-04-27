@@ -43,7 +43,6 @@ i{
 aside{
     width: 35%;
     border-right: 1px solid lightgray;
-    overflow-y: auto;
 }
 
 /* aside - HEADER */
@@ -53,6 +52,7 @@ aside > header{
     align-items: center;
     justify-content: space-between;
     padding: 10px;
+    height: 60px;
 }
 aside header .myImg{
     display: flex;
@@ -71,6 +71,7 @@ aside header .myImg{
     width: 100%;
     background-color: #8EDAFC;
     padding: 15px;
+    height: 66px;
 }
 #notifiche i{
     background-color: white;
@@ -127,6 +128,10 @@ aside > #search-nav > i{
 /* aside - UL */
 aside > #chats > ul{
     list-style: none;
+}
+#chats{
+    height: calc(100% - 166px);
+    overflow-y: auto;
 }
 #chats li{
     border-top: 1px solid #F0F0F0;
@@ -202,6 +207,7 @@ main > section.chat-text{
     display: flex;
     flex-flow: column nowrap;
     padding-top: 40px;
+    overflow-y: auto;
 }
 .chat-text .row{
     width: 100%;
@@ -212,7 +218,8 @@ main > section.chat-text{
     max-width: 300px;
     padding: 15px;
     border-radius: 10px;
-    font-size: 0.8em;overflow-wrap: break-word;
+    font-size: 0.8em;
+    overflow-wrap: break-word;
 }
 .green{
     background-color: #D5F9BA;
