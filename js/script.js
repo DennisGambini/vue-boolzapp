@@ -313,11 +313,30 @@ const app = new Vue({
             this.viewStatus = this.chats[this.activeIndex].messages[this.activeMsg].status;
             console.log(this.viewStatus);
         },
-        // msgDate(index){
-        //     this.activeDateIndex = index;
-        //     this.viewDate = this.chats[this.activeIndex].messages[this.activeMsg].date;
-        //     console.log(this.viewDate)
-        // }
+        breakString(string){
+            let array = string.split('');
+            let newArray = [];
+            for(i = 0; i < 25; i++){
+                if(array[i] != null){
+                    newArray.push(array[i])
+                }
+            }
+            let ultimoArray = [];
+            for(k = 0; k < newArray.length; k++){
+                ultimoArray.push(newArray[k])
+            }
+            if(ultimoArray.length === 25){
+                return ultimoArray.join("") + '...'
+            } else {
+                return ultimoArray.join("")
+            }
+        },
+        deleteAllMsg(){
+            this.chats[this.activeIndex].messages.splice(0)
+        },
+        deleteChat(){
+            this.chats.splice(this.activeIndex, 1)
+        }
     },
     mounted(){
         

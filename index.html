@@ -58,12 +58,12 @@
                 <section id="chats">
                     <ul>
 
-                        <li v-for="(chat,index) in chats" :id="chats[index].avatar" :key="chats[index].avatar" @click="getActiveIndex(index); filteredWord = ''; scroll() " v-if=" filtraNome(chat) || filteredWord === '' ">
+                        <li v-for="(chat,index) in chats" :id="chats[index].avatar" :key="chats[index].avatar" @click="getActiveIndex(index); filteredWord = ''; scroll() " v-if=" filtraNome(chat) || filteredWord === '' " :class=" activeIndex === index ? 'active' : ''">
                             <div class="li-sx">
                                 <img :src=" 'img/avatar_' + chats[index].avatar + '.jpg' " :alt="chats[index].name" class="user-icon">
                                 <div class="aside-chat-text">
                                     <h4>{{chats[index].name}}</h4>
-                                    <p v-if="chats[index].messages.length > 0">{{viewLastMessage(index)}}</p>
+                                    <p v-if="chats[index].messages.length > 0">{{breakString(viewLastMessage(index))}}</p>
                                 </div>
                             </div>
                             <div class="li-dx" v-if="chats[index].messages.length > 0">
@@ -94,10 +94,14 @@
                         </div>
                     </div>
 
-                    <div class="header-icons">
+                    <div class="header-icons" style="position: relative;">
                         <i class="fa-solid fa-magnifying-glass"></i>
                         <i class="fa-solid fa-paperclip"></i>
                         <i class="fa-solid fa-ellipsis-vertical"></i>
+                        <div class="popUp">
+                            <div @click="deleteAllMsg" class="delete">Elimina Messaggi</div>
+                            <div @click="deleteChat" class="info">Elimina Chat</div>
+                        </div>
                     </div>
                 </header>
 
