@@ -165,52 +165,73 @@ const app = new Vue({
             }
             
         ],
+        filteredWord: '',
         activeIndex: 0,
         newMessage: '',
         risposte:[
             "Ma va' caghèr","Penso di si, ora controllo","Assolutamente no","Fantastico!","Mmmmm....non saprei, non credo....","Moglie e buoi dei paesi tuoi","Non ci sono più le mezze stagioni!","Si stava meglio quando si stava peggio...."
-        ]
+        ],
+        check: false
     },
     methods:{
         viewLastDate(i){
-            let lastDate = this.chats[i].messages[this.chats[i].messages.length - 1].date;
-            //console.log(lastDate);
-            let newDate = this.modifyDate(lastDate);
-            //console.log("newDate: ", newDate);
-            return newDate
+            let newDate;
+            if(this.chats[i].messages.length === 0){
+                newDate = 'nononono'
+            } else {
+                let lastDate = this.chats[i].messages[this.chats[i].messages.length - 1].date;
+                newDate = this.modifyDate(lastDate);
+            }
+            console.log('utente: ', this.chats[i].name, ', newDate: ', newDate)
+            return newDate;
         },
         viewLastMessage(i){
+
+            if(this.chats[i].messages.length === 0){
+                return "";
+            }
+
             let lastMsg = this.chats[i].messages[this.chats[i].messages.length - 1].message;
+
             return lastMsg;
         },
         modifyDate(data){
+            //console.log(data)
+            if(data === undefined){
+                this.chats[this.activeIndex].visible = false;
+                //console.log(this.chats[this.activeIndex].visible)
+                return data = null;
+            }
+            this.chats[this.activeIndex].visible = true;
             let giornoOra = data.split(" ");
             let ora = giornoOra.find(e => e.includes(":"));
             let newTimeArray = ora.split(":");
             newTimeArray.splice(2);
             let newTime = newTimeArray.join(":");
+            //console.log('newTime: ',newTime)
             return newTime;
         },
         myNewLocalTime(){
             let data = `${new Date()}`;
             const newDate = this.modifyDate(data)
-            console.log('sono le : ',newDate)
+            //console.log('sono le : ',newDate)
             return newDate;
         },
         getActiveIndex(i){
             this.activeIndex = i;
+            //console.log('active index: ', this.activeIndex)
         },
         getLastReceived(){
-            const received = this.chats[this.activeIndex].messages.filter((msg)=>{
-                return msg.status === 'received'
-            })
-            const lastReceived = received[received.length -1]
-            //console.log('received:',received)
-            //console.log('lastReceived',lastReceived)
-            return lastReceived.date;
+            let ultimoMsg =  this.chats[this.activeIndex].messages[this.chats[this.activeIndex].messages.length - 1];
+
+            if(ultimoMsg.status === 'received'){
+                
+                return 'Ultimo accesso oggi alle ' + this.modifyDate(ultimoMsg.date);
+            } else {
+                return 'Offline'
+            }
         },
         pushMessage(){
-            //console.log('newMessage: ',this.newMessage)
             let now = `${new Date()}`;
             const newObj = {
                 message: this.newMessage,
@@ -219,7 +240,12 @@ const app = new Vue({
             };
             this.chats[this.activeIndex].messages.push(newObj);
             this.newMessage = '';
-            setTimeout(this.randomAnswer, 1500);
+            
+            this.mettiInCima(this.chats[this.activeIndex], this.chats)
+            //console.log('ancora active indx: ',this.activeIndex)
+            //console.log('ultimatum: ',this.chats)
+            
+            setTimeout(this.randomAnswer, 1000);
         },
         randomInteger(min, max) {
             return Math.floor(Math.random() * (max - min)) + min;
@@ -232,9 +258,60 @@ const app = new Vue({
                 status: 'received'
             };
             this.chats[this.activeIndex].messages.push(newObj);
+
+        },
+        filtraNome(chat){
+            if(chat.name.toLowerCase().includes(this.filteredWord.toLowerCase())){
+                return true;
+            }
+        },
+        addContatori(){
+            let x = 0;
+            this.chats.forEach((chat) => {
+                chat.contatore = x;
+                x++;
+            })
+            //console.log('contatori aggiunti: ',this.chats)
+        },
+        mettiInCima(oggetto, array){
+            //console.log('obj: ',oggetto)
+            //console.log('array: ',array)
+            array.sort( function (a) {
+                if (a === oggetto){
+                    return -1;
+                }
+            })
+            this.activeIndex = 0;
+            //console.log('nuovoarray',array)
+            return array;
+        },
+        eliminaMsg(i){
+            console.log(i)
+            /*let myArray = this.chats[this.activeIndex].messages;
+            const msg = myArray[i];
+            console.log(myArray)
+            console.log(msg)
+            // boh, guardo quanti received ci sono
+            let numeriRicevuti = [];
+            myArray.forEach((msg)=>{
+                if(msg.status === 'received'){
+                    numeriRicevuti.push(msg)
+                }
+            })*/
+            // console.log('numeriricevuti, ', numeriRicevuti)
+            //boh
+            /*if(numeriRicevuti.length === 1){
+                console.log('splice');
+                myArray.splice(i, 1)
+            } else {
+                myArray.splice(i, 1)
+            }*/
+
+            this.chats[this.activeIndex].messages.splice(i, 1);
         },
     },
     mounted(){
-        this.myNewLocalTime();
+        //this.myNewLocalTime();
+        //this.addContatori();
     }
 })

@@ -214,7 +214,7 @@ main > section.chat-text{
     padding: 5px 100px;
 }
 .text{
-    
+    position: relative;
     max-width: 300px;
     padding: 15px;
     border-radius: 10px;
@@ -229,7 +229,55 @@ main > section.chat-text{
     background-color: white;
     float: left;
 }
-
+.popUp{
+    width: 120px;
+    padding: 10px;
+    position: absolute;
+    transform: translateY(-50%);
+    bottom: -100px;
+    right: -15px;
+    color: white;
+    background-color: rgba(155, 155, 155, 0.7);
+    border-radius: 6px;
+    text-align: right;
+    z-index: 1;
+    display: none;
+    font-size: 1.1em;
+    box-shadow: -2px 2px 2px #555;
+}
+.popUp:hover{
+    display: block;
+}
+.chevron{
+    padding: 5px;
+    position: absolute;
+    transform: translateY(-50%);
+    bottom: -40px;
+    right: -10px;
+    visibility: hidden;
+    font-size: 1.5em;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.chevron:active ~ .popUp{
+    display: block;
+}
+.text:hover .chevron{
+    visibility: visible;
+}
+.block{
+    display: block;
+}
+.delete, .info{
+    padding: 2px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    border-radius: 4px;
+}
+.delete:hover, .info:hover{
+    background-color: white;
+    color: black;
+}
 /* main - FOOTER */
 main > footer{
     height: 50px;

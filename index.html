@@ -51,26 +51,30 @@
                 <!-- sx search navbar -->
                 <nav id="search-nav">
                     <i class="fa-solid fa-magnifying-glass"></i>
-                    <input type="search" name="aside-search" id="aside-search" placeholder="Cerca o inizia una nuova chat">
+                    <input type="search" name="aside-search" id="aside-search" placeholder="Cerca o inizia una nuova chat" v-model="filteredWord">
                 </nav>
 
                 <!-- sx chats -->
                 <section id="chats">
                     <ul>
-                        <li v-for="(chat,index) in chats" :id="chats[index].avatar" :key="chats[index].avatar" @click="getActiveIndex(chats[index].avatar - 1)">
 
+                        <li v-for="(chat,index) in chats" :id="chats[index].avatar" :key="chats[index].avatar" @click="getActiveIndex(index); filteredWord = '' " v-if=" filtraNome(chat) || filteredWord === '' ">
                             <div class="li-sx">
                                 <img :src=" 'img/avatar_' + chats[index].avatar + '.jpg' " :alt="chats[index].name" class="user-icon">
                                 <div class="aside-chat-text">
                                     <h4>{{chats[index].name}}</h4>
-                                    <p>{{viewLastMessage(index)}}</p>
+                                    <p v-if="chats[index].messages.length > 0">{{viewLastMessage(index)}}</p>
                                 </div>
                             </div>
-
-                            <div class="li-dx">
-                                {{viewLastDate(index)}}
+                            <div class="li-dx" v-if="chats[index].messages.length > 0">
+                                {{ viewLastDate(index) }}
                             </div>
+                            <div class="li-dx" v-else>
+                                Nessun messaggio da visualizzare
+                            </div>
+                            
                         </li>
+
                     </ul>
                 </section>
 
@@ -85,7 +89,8 @@
                         <img :src="'img/avatar_' + chats[activeIndex].avatar + '.jpg' " alt="icona utente" class="user-icon">
                         <div class="aside-chat-text">
                             <h4>{{chats[activeIndex].name}}</h4>
-                            <p>Ultimo accesso oggi alle {{modifyDate(getLastReceived())}}</p>
+                            <p v-if="chats[activeIndex].messages.length > 0 && getLastReceived() != 'Offline' ">{{getLastReceived()}}</p>
+                            <p v-if="chats[activeIndex].messages.length === 0 ||  getLastReceived() ==='Offline' ">Offline</p>
                         </div>
                     </div>
 
@@ -98,8 +103,23 @@
 
                 <!-- CHAT -->
                 <section class="chat-text">
-                    <div v-for="(message, index) in chats[activeIndex].messages" class="row">
-                        <div class="text" :class="chats[activeIndex].messages[index].status === 'received' ? 'white' : 'green' ">{{chats[activeIndex].messages[index].message}}</div>
+                    <div v-if="chats[activeIndex].messages.length > 0" v-for="(message, index) in chats[activeIndex].messages" class="row">
+                        <div class="text" :class="message.status === 'received' ? 'white' : 'green' " >
+                            <span>{{message.message}}</span>
+                            <!-- qui c'era l'icona -->
+                            <div style="position: relative;" class="li-dx" >
+                                <span style="float: left">{{ modifyDate(message.date) }}</span>
+                                <div class="chevron">
+                                    <i class="fa-solid fa-chevron-down"></i>
+                                </div>
+                                <div class="popUp">
+                                    <div @click="eliminaMsg(index)" class="delete">Elimina Messaggio</div>
+                                    <div class="info">Info Messaggio</div>
+                                </div>
+                            </div>
+                            
+                            
+                        </div>
                     </div>
 
                 </section>
