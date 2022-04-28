@@ -119,7 +119,7 @@
                                 <!-- menù a tendina -->
                                 <div class="popUp">
                                     <div @click="eliminaMsg(index)" class="delete">Elimina Messaggio</div>
-                                    <div class="info">Info Messaggio</div>
+                                    <div @click="getMsgIndex(index) ;apriChiudiInfo()" class="info">Info Messaggio</div>
                                 </div>
 
                             </div>    
@@ -138,13 +138,21 @@
                     <input type="text" name="write-message" id="write-message" placeholder="Scrivi un messaggio" v-model="newMessage" @keyup.enter="pushMessage()">
 
                     <div class="icon-dx">
-                        <i class="fa-solid fa-microphone"></i>
+                        <i v-if="newMessage === '' " class="fa-solid fa-microphone"></i>
+                        <i v-else class="fa-solid fa-paper-plane" @click="pushMessage"></i>
                     </div>
 
                     </icon>
                 </footer>
 
             </main>
+            <div class="info-cliccate">
+                <i @click="apriChiudiInfo()" class="fa-solid fa-xmark"></i>
+                <div>Testo :   ' {{ viewMsg }} '</div>
+                <div>Data :   --  {{ viewDate }}  --</div>
+                <div>Stato :   {{ viewStatus === 'sent' ? 'Inviato' : 'Ricevuto' }}</div>
+
+            </div>
         </div>
     </div>
 

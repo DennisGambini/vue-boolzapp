@@ -304,3 +304,32 @@ main > footer i:hover{
     color: blue;
     background-color: white;
 }
+
+.info-cliccate{
+    display: none;
+    height: 80vh;
+    width: 60vw;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    background-color: lightgray;
+    border-radius: 30px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.info-cliccate i{
+    color: black;
+    font-size: 1.5em;
+    background-color: white;
+    padding: 5px 10px;
+    border-radius: 50%;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+.block{
+    display: flex;
+}
