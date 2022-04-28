@@ -58,7 +58,7 @@
                 <section id="chats">
                     <ul>
 
-                        <li v-for="(chat,index) in chats" :id="chats[index].avatar" :key="chats[index].avatar" @click="getActiveIndex(index); filteredWord = '' " v-if=" filtraNome(chat) || filteredWord === '' ">
+                        <li v-for="(chat,index) in chats" :id="chats[index].avatar" :key="chats[index].avatar" @click="getActiveIndex(index); filteredWord = ''; scroll() " v-if=" filtraNome(chat) || filteredWord === '' ">
                             <div class="li-sx">
                                 <img :src=" 'img/avatar_' + chats[index].avatar + '.jpg' " :alt="chats[index].name" class="user-icon">
                                 <div class="aside-chat-text">
@@ -104,22 +104,27 @@
                 <!-- CHAT -->
                 <section class="chat-text">
                     <div v-if="chats[activeIndex].messages.length > 0" v-for="(message, index) in chats[activeIndex].messages" class="row">
+
                         <div class="text" :class="message.status === 'received' ? 'white' : 'green' " >
+
                             <span>{{message.message}}</span>
-                            <!-- qui c'era l'icona -->
+
                             <div style="position: relative;" class="li-dx" >
+                                <!-- data -->
                                 <span style="float: left">{{ modifyDate(message.date) }}</span>
+                                <!-- icona -->
                                 <div class="chevron">
                                     <i class="fa-solid fa-chevron-down"></i>
                                 </div>
+                                <!-- menù a tendina -->
                                 <div class="popUp">
                                     <div @click="eliminaMsg(index)" class="delete">Elimina Messaggio</div>
                                     <div class="info">Info Messaggio</div>
                                 </div>
-                            </div>
-                            
-                            
+
+                            </div>    
                         </div>
+
                     </div>
 
                 </section>
@@ -130,7 +135,7 @@
                         <i class="fa-regular fa-face-smile"></i>
                     </div>
 
-                    <input type="text" name="write-message" id="write-message" placeholder="Scrivi un messaggio" v-model="newMessage" @keyup.enter="pushMessage">
+                    <input type="text" name="write-message" id="write-message" placeholder="Scrivi un messaggio" v-model="newMessage" @keyup.enter="pushMessage()">
 
                     <div class="icon-dx">
                         <i class="fa-solid fa-microphone"></i>

@@ -244,7 +244,7 @@ const app = new Vue({
             this.mettiInCima(this.chats[this.activeIndex], this.chats)
             //console.log('ancora active indx: ',this.activeIndex)
             //console.log('ultimatum: ',this.chats)
-            
+            this.scroll()
             setTimeout(this.randomAnswer, 1000);
         },
         randomInteger(min, max) {
@@ -258,7 +258,7 @@ const app = new Vue({
                 status: 'received'
             };
             this.chats[this.activeIndex].messages.push(newObj);
-
+            this.scroll();
         },
         filtraNome(chat){
             if(chat.name.toLowerCase().includes(this.filteredWord.toLowerCase())){
@@ -286,32 +286,19 @@ const app = new Vue({
             return array;
         },
         eliminaMsg(i){
-            console.log(i)
-            /*let myArray = this.chats[this.activeIndex].messages;
-            const msg = myArray[i];
-            console.log(myArray)
-            console.log(msg)
-            // boh, guardo quanti received ci sono
-            let numeriRicevuti = [];
-            myArray.forEach((msg)=>{
-                if(msg.status === 'received'){
-                    numeriRicevuti.push(msg)
-                }
-            })*/
-            // console.log('numeriricevuti, ', numeriRicevuti)
-            //boh
-            /*if(numeriRicevuti.length === 1){
-                console.log('splice');
-                myArray.splice(i, 1)
-            } else {
-                myArray.splice(i, 1)
-            }*/
-
+            //console.log(i)
             this.chats[this.activeIndex].messages.splice(i, 1);
         },
+        autoScroll(){
+            const messaggi = document.getElementsByClassName('text');
+            const lastMsg = messaggi[messaggi.length - 1]
+            lastMsg.scrollIntoView();
+        },
+        scroll(){
+            setTimeout(this.autoScroll, 100)
+        }
     },
     mounted(){
-        //this.myNewLocalTime();
-        //this.addContatori();
+        
     }
 })
