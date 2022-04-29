@@ -174,7 +174,8 @@ const app = new Vue({
         activeMsg: null,
         viewMsg: '',
         viewDate: '',
-        viewStatus: ''
+        viewStatus: '',
+        desktop: true,
     },
     methods:{
         viewLastDate(i){
@@ -336,9 +337,27 @@ const app = new Vue({
         },
         deleteChat(){
             this.chats.splice(this.activeIndex, 1)
+        },
+        resizeListener(){
+            if(document.documentElement.clientWidth < 570){
+                console.log('< di 570');
+                return this.desktop = false;
+            } else {
+                console.log('> di 570')
+                return this.desktop = true;
+            }
+        },
+        toggleNav(){
+            const nav = document.querySelector('.nav-hidden');
+            if(nav.classList.contains('navBlock')){
+                nav.classList.remove('navBlock')
+            } else {
+                nav.classList.add('navBlock');
+            }
         }
     },
     mounted(){
-        
-    }
+        this.resizeListener();
+        window.addEventListener('resize', this.resizeListener)
+    },
 })

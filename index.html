@@ -24,8 +24,65 @@
 
         <div id="app">
 
+            <!-- ASIDE NASCOSTO -->
+
+            <nav v-if="!desktop" class="nav-hidden">
+                <!-- sx header -->
+                <header>
+                    <div class="myImg">
+                        <img src="img/avatar_io.jpg" alt="icona utente" class="user-icon">
+                        <span>Sofia</span>
+                    </div>
+                    <div class="header-icons">
+                        <i class="fa-solid fa-circle-notch"></i>
+                        <i class="fa-solid fa-message"></i>
+                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                    </div>
+                </header>
+
+                <!-- sx notifiche -->
+                <section id="notifiche">
+                    <i class="fa-solid fa-bell-slash"></i>
+                    <div class="notifiche-text">
+                        <h4>Ricevi notifiche di nuovi messaggi</h4>
+                        <a href="#">Attiva notifiche desktop</a>
+                    </div>
+                </section>
+
+                <!-- sx search navbar -->
+                <nav id="search-nav">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="search" name="aside-search" id="aside-search" placeholder="Cerca o inizia una nuova chat" v-model="filteredWord">
+                </nav>
+
+                <!-- sx chats -->
+                <section id="chats">
+                    <ul>
+
+                        <li v-for="(chat,index) in chats" :id="chats[index].avatar" :key="chats[index].avatar" @click="getActiveIndex(index); filteredWord = ''; scroll(); toggleNav() " v-if=" filtraNome(chat) || filteredWord === '' " :class=" activeIndex === index ? 'active' : ''">
+                            <div class="li-sx">
+                                <img :src=" 'img/avatar_' + chats[index].avatar + '.jpg' " :alt="chats[index].name" class="user-icon">
+                                <div class="aside-chat-text">
+                                    <h4>{{chats[index].name}}</h4>
+                                    <p v-if="chats[index].messages.length > 0">{{breakString(viewLastMessage(index))}}</p>
+                                </div>
+                            </div>
+                            <div class="li-dx" v-if="chats[index].messages.length > 0">
+                                {{ viewLastDate(index) }}
+                            </div>
+                            <div class="li-dx" v-else>
+                                Nessun messaggio da visualizzare
+                            </div>
+                            
+                        </li>
+
+                    </ul>
+                </section>
+
+            </nav>
+
             <!-- ASIDE (PARTE A SX) -->
-            <aside>
+            <aside v-if="desktop">
                 <!-- sx header -->
                 <header>
                     <div class="myImg">
@@ -85,7 +142,7 @@
                 <!-- INTESTAZIONE CHAT -->
                 <header>
                     <div class="chatImg">
-                        <i class="fa-solid fa-circle-arrow-left"></i>
+                        <i @click="toggleNav" class="fa-solid fa-circle-arrow-left"></i>
                         <img :src="'img/avatar_' + chats[activeIndex].avatar + '.jpg' " alt="icona utente" class="user-icon">
                         <div class="aside-chat-text">
                             <h4>{{chats[activeIndex].name}}</h4>

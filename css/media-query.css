@@ -91,14 +91,16 @@
 
 @media screen and (max-width: 570px) {
     /* aside */
-    aside{
-        display: none;
-    }
-    #notifiche{
-        display: none;
+    
+    
+    #chats li p{
+        display: block;
     }
     #chats .li-sx{
         gap: 5px;
+    }
+    #chats .li-dx{
+        display: block;
     }
     
     /* main */

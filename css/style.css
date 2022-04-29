@@ -37,7 +37,17 @@ i{
     background-color: #FDFDFD;
 }
 
+                /* NAV */
+/* nav{
+    display: none;
 
+} */
+.nav-hidden{
+    display: none;
+}
+.navBlock{
+    display: block;
+}
                 /* ASIDE */
 
 aside{
